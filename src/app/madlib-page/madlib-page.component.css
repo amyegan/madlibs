@@ -1,0 +1,17 @@
+form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.word {
+  width: 100%;
+}
+
+button {
+  margin-right: 1em;
+}
+
+button[type="submit"] {
+  background-color: orange;
+}
