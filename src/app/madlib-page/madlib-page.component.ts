@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { MadlibTemplate } from "../interfaces/madlib-template.interface"
+import { MadlibsService } from "../services/madlibs.service"
 
 @Component({
   selector: "app-madlib-page",
@@ -46,14 +47,19 @@ export class MadlibPageComponent implements OnInit {
     title: "How To Cross a Piranha-Infested River",
   }
 
-  constructor() {}
+  constructor(private service: MadlibsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getNewStory()
+  }
+
+  getNewStory() {
+    this.service
+      .getNewMadlib()
+      .subscribe(newMadlibTemplate => (this.madlibTemplate = newMadlibTemplate))
+  }
 
   onSubmit(madlibForm) {
-    console.log("form", madlibForm)
-    console.log("test invalid", madlibForm.form.controls["word" + 0].invalid)
-
     this.madlibTemplate.value.forEach((fragment, index) => {
       var word = madlibForm.value["word" + index]
       if (fragment == 0) {
@@ -64,6 +70,5 @@ export class MadlibPageComponent implements OnInit {
         this.story += fragment
       }
     })
-    console.log("story", this.story)
   }
 }

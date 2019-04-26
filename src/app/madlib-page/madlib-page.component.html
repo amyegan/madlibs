@@ -1,6 +1,6 @@
 <h1 class="mat-headline">{{madlibTemplate.title}}</h1>
 
-<form (ngSubmit)="onSubmit(madlibForm)" #madlibForm="ngForm">
+<form (ngSubmit)="onSubmit(madlibForm)" #madlibForm="ngForm" *ngIf="!story">
   <p class="mat-caption">All fields are required to complete the story.</p>
   <mat-form-field class="word" type="text" *ngFor="let wordType of madlibTemplate.blanks; index as wordIndex">
     <input #word="ngModel" matInput placeholder="{{wordType | titlecase}}" required [(ngModel)]="words[wordIndex]"
@@ -10,8 +10,9 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button type="submit">Submit</button>
   <button mat-raised-button type="reset" (click)="madlibForm.form.reset()">Reset</button>
+  <button mat-raised-button type="button" (click)="getNewStory()">New</button>
+  <button mat-raised-button type="submit">Submit</button>
 </form>
 
-<pre class="mat-body">{{story}}</pre>
+<p class="mat-body" *ngIf="story">{{story}}</p>

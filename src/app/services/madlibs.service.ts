@@ -11,7 +11,7 @@ export class MadlibsService {
 
   getNewMadlib(): Observable<MadlibTemplate> {
     return this.http.get<MadlibTemplate>(
-      "http://madlibz.herokuapp.com/api/random?minlength=5&maxlength=25"
+      "http://madlibz.herokuapp.com/api/random?minlength=2&maxlength=15"
     )
   }
 }

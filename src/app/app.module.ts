@@ -6,12 +6,14 @@ import { FormsModule } from "@angular/forms"
 import { AppComponent } from "./app.component"
 import { MaterialModule } from "./material.module"
 import { MadlibPageComponent } from "./madlib-page/madlib-page.component"
+import { HttpClientModule } from "@angular/common/http"
 
 @NgModule({
   declarations: [AppComponent, MadlibPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
     MaterialModule,
   ],
