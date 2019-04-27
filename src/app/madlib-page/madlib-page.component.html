@@ -2,17 +2,21 @@
 
 <form (ngSubmit)="onSubmit(madlibForm)" #madlibForm="ngForm" *ngIf="!story">
   <p class="mat-caption">All fields are required to complete the story.</p>
-  <mat-form-field class="word" type="text" *ngFor="let wordType of madlibTemplate.blanks; index as wordIndex">
-    <input #word="ngModel" matInput placeholder="{{wordType | titlecase}}" required [(ngModel)]="words[wordIndex]"
-      name="word{{wordIndex}}">
+  <mat-form-field class="word" appearance="legacy"
+      *ngFor="let wordType of madlibTemplate.blanks; index as wordIndex">
+    <input type="text" #word="ngModel" matInput 
+        placeholder="{{wordType | titlecase}}" required 
+        [(ngModel)]="words[wordIndex]" name="word{{wordIndex}}">
     <mat-error *ngIf="word.invalid && (word.dirty || word.touched)">
       {{wordType | titlecase}} is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
   <button mat-raised-button type="reset" (click)="madlibForm.form.reset()">Reset</button>
-  <button mat-raised-button type="button" (click)="getNewStory()">New</button>
   <button mat-raised-button type="submit">Submit</button>
 </form>
 
-<p class="mat-body" *ngIf="story">{{story}}</p>
+<ng-container  *ngIf="story">
+  <pre class="mat-body">{{story}}</pre>
+  <button mat-raised-button type="button" (click)="getNewStory()">New</button>
+</ng-container>
